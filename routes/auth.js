@@ -4,12 +4,6 @@ var path = require('path');
 var fs = require('fs');
 var template = require('../lib/template.js');
 
-var authData = {
-    email: 'bonwook.koo@patterntech.co.kr',
-    password: '0816',
-    nickname: 'bonuk'
-}
-
 router.get('/login', function(request, response){
     var title = 'login';
     var list = template.list(request.list);
@@ -25,6 +19,7 @@ router.get('/login', function(request, response){
     response.send(html);
 })
 
+/*
 router.post('/login_process', function(request, response){
     var post = request.body;
     var email = post.email;
@@ -39,9 +34,14 @@ router.post('/login_process', function(request, response){
         response.send('who?');
     }
 })
+*/
 
 router.get('/logout', function(request, response){
-    request.session.destroy(function(err){
+    request.logout();
+    /*request.session.destroy(function(err){
+        response.redirect('/');
+    })*/
+    request.session.save(function(){
         response.redirect('/');
     })
 })

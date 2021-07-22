@@ -4,7 +4,7 @@ var template = require('../lib/template.js');
 var auth = require('../lib/auth.js')
 
 router.get('/', (request, response) => {
-    console.log(request.session);
+    console.log('/', request.user); // deserial~ 의 done 에서 온 user
     var title = 'Welcome';
     var description = "Hello, Node.js";
     var list = template.list(request.list);
